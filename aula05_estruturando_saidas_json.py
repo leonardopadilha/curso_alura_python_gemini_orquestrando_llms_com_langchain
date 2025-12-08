@@ -4,11 +4,10 @@ from my_keys import GEMINI_API_KEY
 from my_models import GEMINI_FLASH
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_core.output_parsers import StrOutputParser, JsonOutputParser
-from langchain_core.globals import set_debug
+#from langchain_core.globals import set_debug
 from detalhes_imagem_modelo import DetalhesImagemModelo
 
-
-set_debug(True)
+#set_debug(True)
 
 llm = ChatGoogleGenerativeAI(
     api_key=GEMINI_API_KEY,
@@ -69,6 +68,3 @@ cadeia_completa = (cadeia_analise_imagem | cadeia_resumo)
 resposta = cadeia_completa.invoke({"imagem_informada": imagem})
 
 print(resposta)
-
-
-
