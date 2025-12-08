@@ -64,7 +64,7 @@ template_resposta = PromptTemplate(
     }
 )
 
-cadeia_resumo = template_resposta | llm | StrOutputParser()
+cadeia_resumo = template_resposta | llm | parser_json_imagem
 cadeia_completa = (cadeia_analise_imagem | cadeia_resumo)
 resposta = cadeia_completa.invoke({"imagem_informada": imagem})
 
