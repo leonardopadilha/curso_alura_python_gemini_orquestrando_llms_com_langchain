@@ -8,6 +8,7 @@ set_debug(False)
 from langchain import hub # Para buscar templates de agents e ajudam a instruir o sistema sobre como tratar os dados de entrada
 from langchain.agents import create_react_agent # Irá ajudar a criar o agente inteligente que nesse caso, consegue decidir qual é a ferramenta mais adequada para cada tarefa.
 from langchain.agents import Tool
+from ferramenta_analisadora_imagem import FerramentaAnalisadoraImagem
 
 class AgenteOrquestrador:
     def __init__(self):
@@ -16,7 +17,7 @@ class AgenteOrquestrador:
             model=GEMINI_FLASH
         )
 
-        ferramenta_analisadora_imagem = None # Irá analisar a imagem e retornar o resultado
+        ferramenta_analisadora_imagem = FerramentaAnalisadoraImagem() # Irá analisar a imagem e retornar o resultado
 
         self.tools = [
             Tool(
