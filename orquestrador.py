@@ -9,6 +9,7 @@ from langchain import hub # Para buscar templates de agents e ajudam a instruir 
 from langchain.agents import create_react_agent # Irá ajudar a criar o agente inteligente que nesse caso, consegue decidir qual é a ferramenta mais adequada para cada tarefa.
 from langchain.agents import Tool
 from ferramenta_analisadora_imagem import FerramentaAnalisadoraImagem
+from ferramenta_explicadora import FerramentaExplicadora
 
 class AgenteOrquestrador:
     def __init__(self):
@@ -18,6 +19,7 @@ class AgenteOrquestrador:
         )
 
         ferramenta_analisadora_imagem = FerramentaAnalisadoraImagem() # Irá analisar a imagem e retornar o resultado
+        ferramenta_explicadora = FerramentaExplicadora() # Irá explicar o tema da pergunta do usuário
 
         self.tools = [
             Tool(
@@ -25,6 +27,12 @@ class AgenteOrquestrador:
                 func = ferramenta_analisadora_imagem.run,
                 description = ferramenta_analisadora_imagem.description,
                 return_direct = ferramenta_analisadora_imagem.return_direct
+            ),
+            Tool(
+                name = ferramenta_explicadora.name,
+                func = ferramenta_explicadora.run,
+                description = ferramenta_explicadora.description,
+                return_direct = ferramenta_explicadora.return_direct
             )
         ]
 
